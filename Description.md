@@ -191,6 +191,7 @@ _a=digitalRead(interruptor);
   }_
   
 **Ensambling**
+
 Once all the pieces have been printed, we are going to assemble them. In order to have a good result, it is advisable to assemble in blocks; Upper (Femur), Middle (Tibia/Fibula area) and finally the Lower (foot). 
 
 We will start assembling the Upper part. With the help of superglue, we are going to bind the file “Caja” with “5-cover-paha-dalam” following the guidelines of the pieces. 
@@ -199,5 +200,30 @@ Appart, we are going to assemble the Middle part using the “6-shank-bawah-meta
 
 The Lower part is basically composed of the food, so finally we will assemble all the blocks using the corresponding screws. Finally, we assemble the stepper motor in “Caja” and we will insert “28-pinion-gear10”, adjusted correctly with “14-straight-bevel-gear10” and add the Velcro straps to adjust the exoskeleton to the patient.
 
+**Printing settings**
 
+The printer used is the Prusa i3 MK3s, and the material used to print the pieces is PLA filament. 
 
+- Layer height: 0,2 mm
+- Line width: 0,4 mm
+- Wall thickness (shell): 0,8 mm
+- Infill pattern: grid
+- Infill density: 20%
+- Printing temperature: 195º
+- Build Plate Temperature: 60º
+- Flow: 100%
+- Speed: 40 mm/s
+- Fan speed: 100%
+- Build Plate adhesion: none
+
+![Result](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/Result.png)
+
+**Conclusions**
+As a conclusion, the 3d printed parts had a good resolution having in mind that when reducing the size of an object the mechanical properties decrease.  Even though, our prosthesis had good mechanical properties to support its function.  Some pieces were well adapted with also good mechanical and visual results.  
+The principal idea was to record the leg myoelectrical signal but finally it was used the forearm signal as it was more uniform.  In addition, we realized that it could be more functional than in the leg.
+A digital code was first done, but as mentioned earlier, it was not very reproducible as it was not standardized.  Thus, the best code is by using the analog signal which reproduces the contractions of the forearm to leg movements continuously.
+Some improvements we think could be made are:
+- Incorporating in the code a stop function which would stop the motor from working when a short circuit happens.
+- A more potent stepper motor would have to be used because it did not have enough force to move the leg properly.
+- The engines should be made from metal because by 3D printing they were not functional enough and slipped between each other.
+- As all the electrical components were outside the exoskeleton, it should be needed a box or something to hold all the components together.
