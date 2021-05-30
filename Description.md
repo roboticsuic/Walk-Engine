@@ -59,9 +59,13 @@ The exoskeleton has three pieces, the upper part belongs to the thigh and it is 
 The upper part has a piece which supports the motor and therefore is incorporated to the exoskeleton.  However, the easy driver and the sensor go separated and connected by some cables.
 ![initial](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/initial1.jpeg)
 ![pieces](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/intial_pieces.jpeg)
+The work mentioned in the introduction was adapted to a knee exoskeleton instead of a full exoskeleton.  We took the following pieces: 11, 8, 7, 6, 12, 13, 14, 26, 28, 4, 5 and some were adapted, for example the foot.  This happened because when the scale was reduced, the foot did not fit the patient's foot and we had to increase the width.
 
 **SolidWorks**. 
 As for the exoskeleton parts in CAD models, the first thing that had to be done was to scale down piece by piece. It turns out that the model we found was designed for an adult of average height, and we were looking to design an exoskeleton for infants of about 5 years of age. That's why we decided to adapt the pieces by reducing the dimensions with a scale of 0.41.
 Even though, there were some parts that required more adaptation, so we redesigned them on  Solid Works.
 
+    -Foot
+For the insole or base of the foot, small adjustments had to be made. First, we printed the piece by simply scaling it down to 0.41 and we saw that, unlike most of the pieces, it didn't fit in our subject feet. The sole of the exoskeleton foot was too small and required both lengthening and widening. To do this, we transferred the piece to Solid Works software and by means of extrusions, cuts and lofts operations we redesigned it. In addition, in order to save unnecessary material we drew an empty pattern on the back of the heel. The result was printed and this time it really fit.
+![foot](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/foot.png)
 ![scheme](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/scheme.png)
