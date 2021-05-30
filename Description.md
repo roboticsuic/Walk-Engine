@@ -55,8 +55,12 @@ _Technical characteristics_:
   - Informative user’s guide (1MB pdf)
 
 _Results_:
+The exoskeleton has three pieces, the upper part belongs to the thigh and it is where the motor is placed.  Then there is the middle part which has the engine that runs along with the engine of the motor.  Finally the lower part is where the foot is placed.  This parts are combined with screws and attached to the leg using velcro straps.
+The upper part has a piece which supports the motor and therefore is incorporated to the exoskeleton.  However, the easy driver and the sensor go separated and connected by some cables.
+![initial](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/initial1.png)
+![pieces](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/initial_pieces.png)
 
-**SolidWorks**
+**SolidWorks**. 
 As for the exoskeleton parts in CAD models, the first thing that had to be done was to scale down piece by piece. It turns out that the model we found was designed for an adult of average height, and we were looking to design an exoskeleton for infants of about 5 years of age. That's why we decided to adapt the pieces by reducing the dimensions with a scale of 0.41.
 Even though, there were some parts that required more adaptation, so we redesigned them on  Solid Works.
 
