@@ -44,6 +44,7 @@ _Technical characteristics_:
   - SRAM: 2 KB (ATmega328)
   - EEPROM: 1 KB (ATmega328)
   - Clock Speed: 16 MHZ.
+  - 
 ![Arduino](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/arduino.jpeg)
 
 **Myoware Sensor**
@@ -58,18 +59,22 @@ _Technical characteristics_:
   - Reverse voltage protection
   - Two mounting holes (suitable for M3 or #4 screws)
   - Informative user’s guide (1MB pdf)
-![Myoware](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/myoware.jpeg)
+
+![Myoware](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/myoware.jpg)
 
 **Easy driver**
   - Dimensions: 3.31 x 2.68 x 0.39 inches
   - Voltage: 5 V or 3.3 V
   - Works for bipolar motors (4, 6 or 8 wire stepper motor)
   - Potentiometer: from 150 mA to 750 mA per phase
+
 ![easydriver](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/easydriver.jpeg)
 
 **Stepper motor:Nema17**
 - Dimensions:
+
  ![dimensions](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/dim_motor.png)
+ 
 - Weight: 0.24 kg 
 - Drive system: Unipolar
 - Step angle: 1.8º full step (0.9º half step)
