@@ -69,7 +69,7 @@ The work mentioned in the introduction was adapted to a knee exoskeleton instead
 As for the exoskeleton parts in CAD models, the first thing that had to be done was to scale down piece by piece. It turns out that the model we found was designed for an adult of average height, and we were looking to design an exoskeleton for infants of about 5 years of age. That's why we decided to adapt the pieces by reducing the dimensions with a scale of 0.41.
 Even though, there were some parts that required more adaptation, so we redesigned them on  Solid Works.
 
-    -Foot
+  - Foot
 For the insole or base of the foot, small adjustments had to be made. First, we printed the piece by simply scaling it down to 0.41 and we saw that, unlike most of the pieces, it didn't fit in our subject feet. The sole of the exoskeleton foot was too small and required both lengthening and widening. To do this, we transferred the piece to Solid Works software and by means of extrusions, cuts and lofts operations we redesigned it. In addition, in order to save unnecessary material we drew an empty pattern on the back of the heel. The result was printed and this time it really fit. In the image we can see on the left, unmodified piece and on the right, modified part and its respective operations in Solid Works.
 ![foot](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/foot.png)
 
@@ -88,8 +88,11 @@ As for the gears, by downscaling to 0.41 the gears reduced the size of the hole 
 **Arduino codes**
 The project was started doing a digital code and then an analog code was implemented.  
 In the first place, in the code there are 5 outputs and 1 input:
+
 _Input_:
+
 - Myoware sensor, named sensor in the pin A0
+
 _Outputs_:
 - stp in pin 2: controls the number of steps that the motor does
 - dir in pin 3: controls the direction of the movement in the motor
@@ -104,91 +107,45 @@ Then inside the void set up, all the pin modes are writen:
 - pinMode(EN, OUTPUT);
 - pinMode(sensor, INPUT);
 
-In addition the function Serial.begin () is also added to the void.setup with the 9600 baudio velocity.
-In the void loop there is the main logic of the code.
+In addition the function _Serial.begin ()_ is also added to the void.setup with the 9600 baudio velocity.  In the void loop there is the main logic of the code.
+
 The objective is to have two positions so that when it is in position 0 moves 90 degrees to one direction and when it is in the other position it moves 90 degrees to the opposite direction.  For this loop to work we define the position as 0 and every time the program is loaded it starts with position 0, that corresponds to the exoskeleton being down (0 degrees).  In addition the function analogRead(sensor) is used to read the value of the sensor and the Serial.print() to print the value of the sensor in the serial port with a delay of 100 ms.
-  _int val = analogRead(sensor);
-  delay(100);
-  Serial.println(val);_
 
-The muscular electrical signal was analyzed using the serial port and it was observed that when the person contracted the forearm the signal decreased above 300 and when the person stopped the contraction, the signal decreased to below 150.  It is worth having in mind that this code only works for a particular person, it is not normalized.
-Two functions were created:
-_Subir()
-void Subir()
-{
-  digitalWrite(dir, LOW); 
-  for(x= 0; x<50; x++) 
-  {
-    digitalWrite(stp,HIGH); 
-    delay(1);
-    digitalWrite(stp,LOW); 
-    delay(1);
-  }
-}_
+The muscular electrical signal was analyzed using the serial port and it was observed that when the person contracted the forearm the signal increased above 300 and when the person stopped the contraction, the signal decreased to below 150.  It is worth having in mind that this code only works for a particular person, it is not normalized.
 
-The first uses the pin dir to set the direction in which the motor is going to move when this function is called (up). Then, a for loop is done which states that from step 0, defined by the variable x (previously defined), to step 50.  As the motor can move 200 steps/turn, 50 steps correspond to 90 degrees.  The x++ means that the steps are incremented 1 by 1.  In each of these steps (x) there is another digital write, which calls the pin stp (the one that controls the steps) and moves 1 (HIGH) and deactivates the pin so it can be triggered again (LOW).
+In addition, two functions were created: _Subir()_ and _Bajar()_.   Firstly uses the pin dir to set the direction in which the motor is going to move when this function is called (up). Then, a for loop is done which states that the motor has to move from step 0, defined by the variable x (previously defined), to step 50.  As the motor can move 200 steps/turn, 50 steps correspond to 90 degrees.  The x++ means that the steps are incremented 1 by 1.  In each of these steps (x) there is another digital write, which calls the pin stp (the one that controls the steps) and moves 1 (HIGH) and deactivates the pin so it can be triggered again (LOW).
 The function Bajar() does the same but the direction is the oposite.
 
-Then with an if the following code is written:
-_if (pos==0){
-    if (val>300){
-      Serial.println("mueve la pierna");
-      Subir();
-      pos=1;
-    }
-  }
-  else {
-    if(val<150){
-      Serial.println("baja la pierna");
-      Bajar();
-      pos=0;
-    }
-  }_
+Then with an if the logic of the code is written.  As it is said, at the beginning the position is 0 as it is defined so it enters the if that defines the pos==0, then when the position is 0 we want the exoskeleton to move upwards so we set a threshold value of 300 (contracted).  In addition, when this value is surpassed, “mueve la pierna” is printed in the serial port, so you know that the motor is going to do a movement.  Then, the function Subir is called.  When this if ends it changes to position 1, that corresponds to the leg being at 90 degrees.
 
-As it is said, at the beginning the position is 0 as it is defined so it enters the if that defines the pos==0, then when the position is 0 we want the exoskeleton to move upwards so we set a threshold value of 300 (contracted).  In addition, when this value is surpassed, “mueve la pierna” is printed in the serial port, so you know that the motor is going to do a movement.  Then, the function Subir is called.  When this if ends it changes to position 1, that corresponds to the leg being at 90 degrees.
 Moreover, if the position is 0 but the value is not over 300 it does not do anything, this ensures that if the leg is flexed and we don’t do a force it does not flex more.
 Furthermore, there is an else which is activated when the position has been turned to 1, this means that the leg is extended.  Then, another if sets the threshold value to 150, which corresponds to no contraction in the forearm.  If these two conditions are fulfilled, the serial port prints “baja la pierna” and the function Bajar() is called, so it moves 90 degrees down, and the position is turned back to 0, so it can be extended again.
 
 This code is not very optimal because it is personalized, and with particular values of forces.  If these values are changed, because the person gets more strong or because the sensor is not well adjusted, it could cause the leg to move with the minimal force.
 This is why we decided to do another code but analogic.
 
-
 In the analog code all the inputs and outputs are the same except for that we incorporated a switch in the pin 11:
+
 - pinMode(interruptor, INPUT_PULLUP);
-What was done in this code is to set a value of ratio which was 6.  This ratio corresponds to the value by which is divided the output of the sensor.  This way, the result is normalized to have an output of the steps and not the sensor value.  This value is 6 because the maximum force that the sensor could detect was approx 600 and the number of steps that we wanted was approximately 100 (we realized that it was needed to turn more than 50 steps because the engine on the motor was smaller than the one below.
+
+What was done in this code is to set a value of ratio which was 6.  This ratio corresponds to the value by which is divided the output of the sensor.  This way, the result is normalized to have an output of the steps and not the sensor value.  This value is 6 because the maximum force that the sensor could detect was approximately 600 and the number of steps that we wanted was approximately 100 (we realized that it was needed to turn more than 50 steps because the engine on the motor was smaller than the one below.
 
 Then, a filter was added to avoid fluctuations of the movement.  The functioning of this filter is to average some values of the sensor in order to have a more homogeneous signal every half second.
-  _SUM = SUM - READINGS[INDEX];       
-  val = analogRead(sensor);        
-  READINGS[INDEX] = val;           
-  SUM = SUM + val;                 
- 	INDEX = (INDEX+1) % WINDOW_SIZE;   
-  AVERAGED = SUM / WINDOW_SIZE;_
+
 
 The interruptor was implemented with an if. A digitalRead reads the interruptor value and if it is low it runs the code that is inside the if. In addition, it prints the interruptor value next to the sensor value in the serial port.
 
+
 The next step was to normalize our values.  We had to values:
+
 norm=(AVERAGED/ratio): averaged signal(filtered) divided by the ratio mentioned above; number of steps.
 restnorm=abs(actualnorm-norm): absolute value of the subtraction between the last value recorded and the one is reading now.
+
 Moreover, another if was written to move the motor.  If the actual norm (last one) was smaller than the one reading now (norm) it means that the person is doing more force and therefore the motor has to move upwards.  At the end of the if we record the value as actualnorm=norm.  On the contrary, if actualnorm is higher than norm, the person is doing less force so it has to go down.
 
-In addition, we used the same functions as in the digital one but with some modifications.  in the For that establishes the number of steps to move it does not move a fixated number but corresponds to the restnorm value. This way it is only moving a number of steps proportional to the force, at it does not start from 0 but from the last value position.
+In addition, we used the same functions as in the digital one but with some modifications.  In the For that establishes the number of steps to move it does not move a fixated number but corresponds to the restnorm value. This way it is only moving a number of steps proportional to the force, and it does not start from 0 but from the last value position.
 
-_a=digitalRead(interruptor);
-  Serial.print (a);
-  if (a==LOW){
-     norm=(AVERAGED/ratio);
-     restnorm=abs(actualnorm-norm);
-    Serial.println(norm);
-    if (actualnorm<norm){
-      Subir();
-      actualnorm=norm;
-      }
-    if (actualnorm>norm){
-      Bajar();
-      actualnorm=norm;
-      }
-  }_
+
   
 **Ensambling**
 
