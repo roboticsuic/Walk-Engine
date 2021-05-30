@@ -1,14 +1,16 @@
 # Walk-Engine 
 ## PROJECT: Leg exoskeleton controlled by a myoelectric sensor
-Nowadays, there are many health aids to combat illnesses or disabilities, but not everything is solved. A large part of the disabilities solutions can be very expensive or even have no solution at all. We believe it is necessary to create new methods to help these patients. For this reason, we have designed a method in which you can be able to create this help by your hands in your own home.
+Nowadays, there are many health aids to combat illnesses or disabilities, but not everything is solved. A large part of the disabilities solutions can be very expensive or even have no solution at all and we believe it is necessary to create new methods to help these patients. For this reason, we have designed a method in which it would be possible to create this help by your hands in your own home.
 
 This project aims to create a leg exoskeleton that has the function of aiding walk movement but without replacing the limb itself.  It serves to people which have Spinal Cord injury (SCI) and have either no sensibility or an impairment in the limb performance.  It goes from the knee to the foot.  It is powered by a stepper motor which is connected to an Arduino platform and controlled by a myoelectric sensor placed in another person.  The project is based on an existing project (https://www.myminifactory.com/object/3d-print-cre-008-lower-limb-exoskeleton-huced-despro-its-70180) but reduced in size, as it is for child patients.
+
 
 _Objectives:_
 - Learn to 3D print complicated objects and to re-scale and adapt them for the size wanted.  Thus, some objects required designing in SOLIDWORKS.
 - Connect a stepper motor to the Arduino platform.
 - Recognize patterns in the forearm muscle movement and transform it into electrical signals to control the motor mentioned above.
 - Adapt this movements to work for a child-size knee exoskeleton 
+
 
 _Materials_:
 - **For 3d printing**:
@@ -30,6 +32,7 @@ _Materials_:
   - Ultimaker Cura: open 3D printing software used to determine the setting parameters for printing.
   - SOLIDWORKS: 3D CAD design program used to create or modify the pieces that will be printed.
 
+
 _Technical characteristics_:
 
 **Arduino UNO**
@@ -41,6 +44,7 @@ _Technical characteristics_:
   - SRAM: 2 KB (ATmega328)
   - EEPROM: 1 KB (ATmega328)
   - Clock Speed: 16 MHZ.
+![Arduino](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/arduino.jpeg)
 
 **Myoware Sensor**
   - Dimensions: 2.1″ × 0.8″ (excluding reference electrode cable, which is about  3″ long) 
@@ -54,6 +58,28 @@ _Technical characteristics_:
   - Reverse voltage protection
   - Two mounting holes (suitable for M3 or #4 screws)
   - Informative user’s guide (1MB pdf)
+![Myoware](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/myoware.jpeg)
+
+**Easy driver**
+  - Dimensions: 3.31 x 2.68 x 0.39 inches
+  - Voltage: 5 V or 3.3 V
+  - Works for bipolar motors (4, 6 or 8 wire stepper motor)
+  - Potentiometer: from 150 mA to 750 mA per phase
+![easydriver](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/easydriver.jpeg)
+
+**Stepper motor:Nema17**
+- Dimensions:
+ ![dimensions](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/dim_motor.png)
+- Weight: 0.24 kg 
+- Drive system: Unipolar
+- Step angle: 1.8º full step (0.9º half step)
+- 200 steps per revolution
+- Number of phases: 4
+- Voltage & Current: 12 V at 400 mA
+- Resistance per phase: 30 ohms
+- Max continuous power: 5 V 
+- Operating Temperature: -10º to +50º
+
 
 _Results_:
 
@@ -63,6 +89,7 @@ The upper part has a piece which supports the motor and therefore is incorporate
 ![pieces](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/intial_pieces.jpeg)
 The work mentioned in the introduction was adapted to a knee exoskeleton instead of a full exoskeleton.  We took the following pieces: 11, 8, 7, 6, 12, 13, 14, 26, 28, 4, 5 and some were adapted, for example the foot.  This happened because when the scale was reduced, the foot did not fit the patient's foot and we had to increase the width.
 
+This is the scheme it has to be followed to assemble the cirucit.  It incorporates the stepper motor, the easy driver along with the sensor and the arduino.
 ![scheme](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/scheme.png)
 
 **SolidWorks**. 
@@ -86,6 +113,7 @@ As for the gears, by downscaling to 0.41 the gears reduced the size of the hole 
 ![motorbox](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/gears.png)
 
 **Arduino codes**
+
 The project was started doing a digital code and then an analog code was implemented.  
 In the first place, in the code there are 5 outputs and 1 input:
 
