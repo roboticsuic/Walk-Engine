@@ -90,36 +90,47 @@ _Results_:
 
 The exoskeleton has three pieces, the upper part belongs to the thigh and it is where the motor is placed.  Then there is the middle part which has the engine that runs along with the engine of the motor.  Finally the lower part is where the foot is placed.  This parts are combined with screws and attached to the leg using velcro straps.
 The upper part has a piece which supports the motor and therefore is incorporated to the exoskeleton.  However, the easy driver and the sensor go separated and connected by some cables.
+
 The work mentioned in the introduction was adapted to a knee exoskeleton instead of a full exoskeleton.  We took the following pieces: 11, 8, 7, 6, 12, 13, 14, 26, 28, 4, 5 and some were adapted, for example the foot.  This happened because when the scale was reduced, the foot did not fit the patient's foot and we had to increase the width.
 ![initial](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/initial1.jpeg)
 ![pieces](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/intial_pieces.jpeg)
 
-This is the scheme it has to be followed to assemble the cirucit.  It incorporates the stepper motor, the easy driver along with the sensor and the arduino.
+This is the scheme it has to be followed to assemble the cirucit.  It incorporates the stepper motor, the easy driver along with the sensor and the arduino, connected to a power source.
+
 ![scheme](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/scheme.png)
 
 **SolidWorks**. 
+
 As for the exoskeleton parts in CAD models, the first thing that had to be done was to scale down piece by piece. It turns out that the model we found was designed for an adult of average height, and we were looking to design an exoskeleton for infants of about 5 years of age. That's why we decided to adapt the pieces by reducing the dimensions with a scale of 0.41.
 Even though, there were some parts that required more adaptation, so we redesigned them on  Solid Works.
 
   - Foot
+
 For the insole or base of the foot, small adjustments had to be made. First, we printed the piece by simply scaling it down to 0.41 and we saw that, unlike most of the pieces, it didn't fit in our subject feet. The sole of the exoskeleton foot was too small and required both lengthening and widening. To do this, we transferred the piece to Solid Works software and by means of extrusions, cuts and lofts operations we redesigned it. In addition, in order to save unnecessary material we drew an empty pattern on the back of the heel. The result was printed and this time it really fit. In the image we can see on the left, unmodified piece and on the right, modified part and its respective operations in Solid Works.
+
 ![foot](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/foot.png)
 
   - Support box
+
 As a support for the stepper motor it was necessary to create a base strong enough to support the weight of the stepper motor and also resistant to vibrations. In addition to this, it was necessary to immobilise the motor to avoid misalignment. For all these reasons it was decided to design a support in the form of a box. This box would have its respective holes in order to screw the motor and minimise misalignment. In addition, a small cylinder was extruded in the base of this box, which would serve as a joint to attach this support box to the rest of the exoskeleton in the middle part of the leg. 
+
 ![motorbox](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/motorbox.png)
 
 -   Thigh
-The exoskeleton we chose as a reference was complete and went from the hip to the foot. Our subject required a partial exoskeleton from the knee to the foot. Therefore we had to adjust the design a little more. The upper part of the thigh support (what would become the tibia of the exoskeleton) was split in half and fixed using extrusions, cuts and lofts in Solid Works. This was done to obtain the leg support that would connect to the knee without having to go all the way to the hip (as our exoskeleton did not have any joints there).
+
+The exoskeleton we chose as a reference was complete and went from the hip to the foot. Our subject required a partial exoskeleton from the knee to the foot. Therefore we had to adjust the design a little more. The upper part of the thigh support (what would become the femur of the exoskeleton) was split in half and fixed using extrusions, cuts and lofts in Solid Works. This was done to obtain the leg support that would connect to the knee without having to go all the way to the hip (as our exoskeleton did not have any joints there).
+
 ![motorbox](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/thigh.png)
 
   - Gears
+
 As for the gears, by downscaling to 0.41 the gears reduced the size of the hole where the stepper motor shaft would go. This means that they were not well made and the shaft was too big for the holes. So it was decided to modify these round slots with Solid Works. Extrusion and cutting operations were used to enlarge the hole to the perfect size for the motor shaft. To do this we first measured the shaft itself and then made the holes to size. The results were printed and were satisfactory.
+
 ![motorbox](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/gears.png)
 
 **Arduino codes**
 
-The project was started doing a digital code and then an analog code was implemented.  
+The project was started doing a **digital code** and then an analog code was implemented.  
 In the first place, in the code there are 5 outputs and 1 input:
 
 _Input_:
@@ -157,7 +168,7 @@ Furthermore, there is an else which is activated when the position has been turn
 This code is not very optimal because it is personalized, and with particular values of forces.  If these values are changed, because the person gets more strong or because the sensor is not well adjusted, it could cause the leg to move with the minimal force.
 This is why we decided to do another code but analogic.
 
-In the analog code all the inputs and outputs are the same except for that we incorporated a switch in the pin 11:
+In the **analog code** all the inputs and outputs are the same except for that we incorporated a switch in the pin 11:
 
 - pinMode(interruptor, INPUT_PULLUP);
 
@@ -172,6 +183,7 @@ The interruptor was implemented with an if. A digitalRead reads the interruptor 
 The next step was to normalize our values.  We had to values:
 
 norm=(AVERAGED/ratio): averaged signal(filtered) divided by the ratio mentioned above; number of steps.
+
 restnorm=abs(actualnorm-norm): absolute value of the subtraction between the last value recorded and the one is reading now.
 
 Moreover, another if was written to move the motor.  If the actual norm (last one) was smaller than the one reading now (norm) it means that the person is doing more force and therefore the motor has to move upwards.  At the end of the if we record the value as actualnorm=norm.  On the contrary, if actualnorm is higher than norm, the person is doing less force so it has to go down.
@@ -206,9 +218,12 @@ The printer used is the Prusa i3 MK3s, and the material used to print the pieces
 - Fan speed: 100%
 - Build Plate adhesion: none
 
+The final resul is:
+
 ![Result](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/Result.png)
 
 **Conclusions**
+
 As a conclusion, the 3d printed parts had a good resolution having in mind that when reducing the size of an object the mechanical properties decrease.  Even though, our prosthesis had good mechanical properties to support its function.  Some pieces were well adapted with also good mechanical and visual results.  
 The principal idea was to record the leg myoelectrical signal but finally it was used the forearm signal as it was more uniform.  In addition, we realized that it could be more functional than in the leg.
 A digital code was first done, but as mentioned earlier, it was not very reproducible as it was not standardized.  Thus, the best code is by using the analog signal which reproduces the contractions of the forearm to leg movements continuously.
