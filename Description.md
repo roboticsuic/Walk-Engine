@@ -44,7 +44,7 @@ _Technical characteristics_:
   - SRAM: 2 KB (ATmega328)
   - EEPROM: 1 KB (ATmega328)
   - Clock Speed: 16 MHZ.
-  - 
+
 ![Arduino](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/arduino.jpeg)
 
 **Myoware Sensor**
@@ -90,9 +90,9 @@ _Results_:
 
 The exoskeleton has three pieces, the upper part belongs to the thigh and it is where the motor is placed.  Then there is the middle part which has the engine that runs along with the engine of the motor.  Finally the lower part is where the foot is placed.  This parts are combined with screws and attached to the leg using velcro straps.
 The upper part has a piece which supports the motor and therefore is incorporated to the exoskeleton.  However, the easy driver and the sensor go separated and connected by some cables.
+The work mentioned in the introduction was adapted to a knee exoskeleton instead of a full exoskeleton.  We took the following pieces: 11, 8, 7, 6, 12, 13, 14, 26, 28, 4, 5 and some were adapted, for example the foot.  This happened because when the scale was reduced, the foot did not fit the patient's foot and we had to increase the width.
 ![initial](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/initial1.jpeg)
 ![pieces](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/intial_pieces.jpeg)
-The work mentioned in the introduction was adapted to a knee exoskeleton instead of a full exoskeleton.  We took the following pieces: 11, 8, 7, 6, 12, 13, 14, 26, 28, 4, 5 and some were adapted, for example the foot.  This happened because when the scale was reduced, the foot did not fit the patient's foot and we had to increase the width.
 
 This is the scheme it has to be followed to assemble the cirucit.  It incorporates the stepper motor, the easy driver along with the sensor and the arduino.
 ![scheme](https://github.com/roboticsuic/Walk-Engine/blob/main/Images/scheme.png)
